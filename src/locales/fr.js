@@ -227,6 +227,7 @@ const fr = {
   contact_faq3_desc: "Soumission de Business Plan requise après validation.",
   contact_faq4_title: "Signalement",
   contact_faq4_desc: "Rapport de bugs sur le site GOWRAX.ME.",
+  contact_footer: "GOWRAX Operational Command // Secure Communication Link // 2026",
 
   // Join
   join_title: "GRX | Dossier de Recrutement",

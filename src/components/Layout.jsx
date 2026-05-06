@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import StarField from './StarField';
 import BootScreen from './BootScreen';
 import CustomCursor from './CustomCursor';
 
-export default function Layout({ children }) {
+export default function Layout() {
   const [booting, setBooting] = useState(false);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Layout({ children }) {
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
         <main style={{ flex: 1, paddingTop: 60 }}>
-          {children}
+          <Outlet />
         </main>
         <Footer />
       </div>

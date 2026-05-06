@@ -208,6 +208,7 @@ const en = {
   contact_faq3_desc: "Business Plan submission required after validation.",
   contact_faq4_title: "Report",
   contact_faq4_desc: "Bug reports on the GOWRAX.ME site.",
+  contact_footer: "GOWRAX Operational Command // Secure Communication Link // 2026",
 
   join_title: "GRX | Recruitment File",
   join_header_title1: "Join_",

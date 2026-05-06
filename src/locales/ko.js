@@ -208,6 +208,7 @@ const ko = {
   contact_faq3_desc: "검증 후 사업 계획서 제출 필요.",
   contact_faq4_title: "신고",
   contact_faq4_desc: "GOWRAX.ME 사이트의 버그 신고.",
+  contact_footer: "GOWRAX 운영 사령부 // 보안 통신 링크 // 2026",
 
   join_title: "GRX | 채용 파일",
   join_header_title1: "참여_",
