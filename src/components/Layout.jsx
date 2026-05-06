@@ -1,0 +1,36 @@
+import { useState, useEffect } from 'react';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import StarField from './StarField';
+import BootScreen from './BootScreen';
+import CustomCursor from './CustomCursor';
+
+export default function Layout({ children }) {
+  const [booting, setBooting] = useState(false);
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('grx_boot')) {
+      setBooting(true);
+    }
+  }, []);
+
+  const handleBootComplete = () => {
+    sessionStorage.setItem('grx_boot', '1');
+    setBooting(false);
+  };
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative', background: 'var(--abyss)' }}>
+      <CustomCursor />
+      <StarField />
+      {booting && <BootScreen onComplete={handleBootComplete} />}
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Navbar />
+        <main style={{ flex: 1, paddingTop: 60 }}>
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
+}
