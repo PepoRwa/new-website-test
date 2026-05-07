@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { supabase } from '../lib/supabase';
@@ -11,7 +11,6 @@ function escapeHTML(str) {
 export default function News() {
   const { t, lang } = useLanguage();
   const [posts, setPosts] = useState([]);
-  const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -25,17 +24,16 @@ export default function News() {
         setLoading(false);
         if (err) { setError(true); return; }
         setPosts(data || []);
-        setFiltered(data || []);
       });
   }, []);
 
-  useEffect(() => {
-    if (!search.trim()) { setFiltered(posts); return; }
+  const filtered = useMemo(() => {
+    if (!search.trim()) return posts;
     const q = search.toLowerCase();
-    setFiltered(posts.filter((p) => {
+    return posts.filter((p) => {
       const title = lang === 'en' ? (p.title_en || p.title) : lang === 'ko' ? (p.title_ko || p.title) : p.title;
       return title.toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q);
-    }));
+    });
   }, [search, posts, lang]);
 
   const getTitle = (p) => {

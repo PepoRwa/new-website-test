@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function BootScreen({ onComplete }) {
@@ -6,7 +6,7 @@ export default function BootScreen({ onComplete }) {
   const [lines, setLines] = useState([]);
   const [done, setDone] = useState(false);
 
-  const bootLines = [
+  const bootLines = useMemo(() => [
     t('boot_line1'),
     t('boot_line2'),
     t('boot_line3'),
@@ -14,7 +14,7 @@ export default function BootScreen({ onComplete }) {
     t('boot_line5'),
     t('boot_line6'),
     t('boot_line7'),
-  ];
+  ], [t]);
 
   useEffect(() => {
     let i = 0;
@@ -31,7 +31,7 @@ export default function BootScreen({ onComplete }) {
       }
     }, 250);
     return () => clearInterval(interval);
-  }, []);
+  }, [bootLines, onComplete]);
 
   return (
     <div

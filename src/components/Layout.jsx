@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -7,13 +7,7 @@ import BootScreen from './BootScreen';
 import CustomCursor from './CustomCursor';
 
 export default function Layout() {
-  const [booting, setBooting] = useState(false);
-
-  useEffect(() => {
-    if (!sessionStorage.getItem('grx_boot')) {
-      setBooting(true);
-    }
-  }, []);
+  const [booting, setBooting] = useState(() => !sessionStorage.getItem('grx_boot'));
 
   const handleBootComplete = () => {
     sessionStorage.setItem('grx_boot', '1');
